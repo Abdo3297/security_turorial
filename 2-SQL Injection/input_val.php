@@ -5,7 +5,7 @@ try {
 } catch (PDOException $e) {
     die($e->getMessage());
 }
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password'])) {
     $username = strip_tags($_POST['username']);
     $password = strip_tags($_POST['password']);
     $query = $database->prepare("select * from users where username = :username and password = :password");

@@ -5,9 +5,9 @@ try {
 } catch (PDOException $e) {
     die($e->getMessage());
 }
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
-    $id = (int)$_GET['id'];
+    $id = filter_var($_GET['id'],519);
     $query = $database->prepare("select * from users where id=:id");
     $query->bindParam("id",$id);
     $query->execute();
